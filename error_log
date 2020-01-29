@@ -1,0 +1,8 @@
+[28-Jan-2020 21:22:17 Asia/Jakarta] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/itechnes/public_html/pos/lib/libraries/Session/Session.php on line 143
+[28-Jan-2020 21:22:52 Asia/Jakarta] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/itechnes/public_html/pos/lib/libraries/Session/Session.php on line 143
+[28-Jan-2020 21:22:52 Asia/Jakarta] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/itechnes/public_html/pos/lib/libraries/Session/Session.php on line 143
+[28-Jan-2020 21:22:56 Asia/Jakarta] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/itechnes/public_html/pos/lib/libraries/Session/Session.php on line 143
+[28-Jan-2020 21:22:58 Asia/Jakarta] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/itechnes/public_html/pos/lib/libraries/Session/Session.php on line 143
+[28-Jan-2020 21:22:58 Asia/Jakarta] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/itechnes/public_html/pos/lib/libraries/Session/Session.php on line 143
+[28-Jan-2020 21:23:00 Asia/Jakarta] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/itechnes/public_html/pos/lib/libraries/Session/Session.php on line 143
+[28-Jan-2020 21:23:00 Asia/Jakarta] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/itechnes/public_html/pos/lib/libraries/Session/Session.php on line 143
