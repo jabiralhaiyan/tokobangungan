@@ -23,7 +23,8 @@ if ($modal) {
                     <link href="<?= $assets ?>dist/css/styles.css" rel="stylesheet" type="text/css" />
                     <style type="text/css" media="all">
                         body { color: #000; }
-                        #wrapper { max-width: 520px; margin: 0 auto; padding-top: 20px; }
+                        /*#wrapper { max-width: 520px; margin: 0 auto; padding-top: 20px; }*/
+                        #wrapper { max-width: 58mm; margin: 0 auto; padding-top: 20px; }
                         .btn { margin-bottom: 5px; }
                         .table { border-radius: 3px; }
                         .table th { background: #f5f5f5; }
@@ -32,7 +33,8 @@ if ($modal) {
 
                         @media print {
                             .no-print { display: none; }
-                            #wrapper { max-width: 480px; width: 100%; min-width: 250px; margin: 0 auto; }
+                            /*#wrapper { max-width: 480px; width: 100%; min-width: 250px; margin: 0 auto; }*/
+                            #wrapper { max-width: 58mm; width: 100%; min-width: 28mm; margin: 0 auto; }
                         }
                         <?php if($Settings->rtl) { ?>
                             .text-right { text-align: left; }
@@ -62,7 +64,7 @@ if ($modal) {
                                 <div style="text-align:center;">
                                     <?php
                                     if ($store) {
-                                        echo '<img src="'.base_url('uploads/'.$store->logo).'" alt="'.$store->name.'">';
+                                        // echo '<img src="'.base_url('uploads/'.$store->logo).'" alt="'.$store->name.'">';
                                         echo '<p style="text-align:center;">';
                                         echo '<strong>'.$store->name.'</strong><br>';
                                         echo $store->address1.'<br>'.$store->address2;
@@ -74,8 +76,8 @@ if ($modal) {
                                 </div>
                                 <p>
                                     <?= lang("date").': '.$this->tec->hrld($inv->date); ?> <br>
-                                    <?= lang('sale_no_ref').': '.$inv->id; ?><br>
-                                    <?= lang("customer").': '. $inv->customer_name; ?> <br>
+<!--                                     <?= lang('sale_no_ref').': '.$inv->id; ?><br>
+                                    <?= lang("customer").': '. $inv->customer_name; ?> <br> -->
                                     <?= lang("sales_person").': '. $created_by->first_name." ".$created_by->last_name; ?> <br>
                                 </p>
                                 <div style="clear:both;"></div>
@@ -146,7 +148,7 @@ if ($modal) {
                                         <?php } ?>
                                     </tfoot>
                                 </table>
-                                <?php
+<!--                                 <?php
                                 if ($payments) {
                                     echo '<table class="table table-striped table-condensed" style="margin-top:10px;"><tbody>';
                                     foreach ($payments as $payment) {
@@ -183,7 +185,7 @@ if ($modal) {
                                     echo '</tbody></table>';
                                 }
 
-                                ?>
+                                ?> -->
 
                                 <?= $inv->note ? '<p style="margin-top:10px; text-align: center;">' . $this->tec->decode_html($inv->note) . '</p>' : ''; ?>
                                 <?php if (!empty($store->receipt_footer)) { ?>
@@ -211,9 +213,9 @@ if ($modal) {
                                     }
                                     ?>
                                 </div>
-                                <div class="btn-group" role="group">
+<!--                                 <div class="btn-group" role="group">
                                     <a class="btn btn-block btn-success" href="#" id="email"><?= lang("email"); ?></a>
-                                </div>
+                                </div> -->
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close'); ?></button>
                                 </div>
@@ -232,7 +234,7 @@ if ($modal) {
                                 }
                                 ?>
                             </span>
-                            <span class="pull-left col-xs-12"><a class="btn btn-block btn-success" href="#" id="email"><?= lang("email"); ?></a></span>
+                            <!-- <span class="pull-left col-xs-12"><a class="btn btn-block btn-success" href="#" id="email"><?= lang("email"); ?></a></span> -->
                             <span class="col-xs-12">
                                 <a class="btn btn-block btn-warning" href="<?= site_url('pos'); ?>"><?= lang("back_to_pos"); ?></a>
                             </span>
