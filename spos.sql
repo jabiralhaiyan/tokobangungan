@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Mar 19, 2019 at 06:20 PM
--- Server version: 5.7.24
--- PHP Version: 7.2.14
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 13 Feb 2020 pada 16.13
+-- Versi server: 10.1.30-MariaDB
+-- Versi PHP: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,101 +19,92 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `spos`
+-- Database: `tokobangunan`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_categories`
+-- Struktur dari tabel `tec_categories`
 --
 
-DROP TABLE IF EXISTS `tec_categories`;
-CREATE TABLE IF NOT EXISTS `tec_categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_categories` (
+  `id` int(11) NOT NULL,
   `code` varchar(20) NOT NULL,
   `name` varchar(55) NOT NULL,
-  `image` varchar(100) DEFAULT 'no_image.png',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `image` varchar(100) DEFAULT 'no_image.png'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tec_categories`
+-- Dumping data untuk tabel `tec_categories`
 --
 
 INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`) VALUES
-(1, 'G01', 'General', 'no_image.png');
+(2, '01', 'Generic', 'no_image.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_combo_items`
+-- Struktur dari tabel `tec_combo_items`
 --
 
-DROP TABLE IF EXISTS `tec_combo_items`;
-CREATE TABLE IF NOT EXISTS `tec_combo_items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_combo_items` (
+  `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `item_code` varchar(20) NOT NULL,
   `quantity` decimal(12,4) NOT NULL,
   `price` decimal(25,4) DEFAULT NULL,
-  `cost` decimal(25,4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `cost` decimal(25,4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_customers`
+-- Struktur dari tabel `tec_customers`
 --
 
-DROP TABLE IF EXISTS `tec_customers`;
-CREATE TABLE IF NOT EXISTS `tec_customers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_customers` (
+  `id` int(11) NOT NULL,
   `name` varchar(55) NOT NULL,
   `cf1` varchar(255) NOT NULL,
   `cf2` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `store_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `store_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tec_customers`
+-- Dumping data untuk tabel `tec_customers`
 --
 
 INSERT INTO `tec_customers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`, `store_id`) VALUES
-(1, 'Walk-in Client', '', '', '012345678', 'customer@tecdiary.com', NULL);
+(1, 'Walk-in Client', '', '', '012345678', 'customer@customer.com', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_expenses`
+-- Struktur dari tabel `tec_expenses`
 --
 
-DROP TABLE IF EXISTS `tec_expenses`;
-CREATE TABLE IF NOT EXISTS `tec_expenses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_expenses` (
+  `id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `reference` varchar(50) NOT NULL,
   `amount` decimal(25,4) NOT NULL,
   `note` varchar(1000) DEFAULT NULL,
   `created_by` varchar(55) NOT NULL,
   `attachment` varchar(55) DEFAULT NULL,
-  `store_id` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
+  `store_id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_gift_cards`
+-- Struktur dari tabel `tec_gift_cards`
 --
 
-DROP TABLE IF EXISTS `tec_gift_cards`;
-CREATE TABLE IF NOT EXISTS `tec_gift_cards` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_gift_cards` (
+  `id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `card_no` varchar(20) NOT NULL,
   `value` decimal(25,4) NOT NULL,
@@ -121,27 +112,23 @@ CREATE TABLE IF NOT EXISTS `tec_gift_cards` (
   `balance` decimal(25,4) NOT NULL,
   `expiry` date DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
-  `store_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `card_no` (`card_no`)
+  `store_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_groups`
+-- Struktur dari tabel `tec_groups`
 --
 
-DROP TABLE IF EXISTS `tec_groups`;
-CREATE TABLE IF NOT EXISTS `tec_groups` (
-  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_groups` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
   `name` varchar(20) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `description` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tec_groups`
+-- Dumping data untuk tabel `tec_groups`
 --
 
 INSERT INTO `tec_groups` (`id`, `name`, `description`) VALUES
@@ -151,27 +138,24 @@ INSERT INTO `tec_groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_login_attempts`
+-- Struktur dari tabel `tec_login_attempts`
 --
 
-DROP TABLE IF EXISTS `tec_login_attempts`;
-CREATE TABLE IF NOT EXISTS `tec_login_attempts` (
-  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_login_attempts` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
   `ip_address` varbinary(16) NOT NULL,
   `login` varchar(100) NOT NULL,
-  `time` int(11) UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `time` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_payments`
+-- Struktur dari tabel `tec_payments`
 --
 
-DROP TABLE IF EXISTS `tec_payments`;
-CREATE TABLE IF NOT EXISTS `tec_payments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_payments` (
+  `id` int(11) NOT NULL,
   `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `sale_id` int(11) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL,
@@ -194,31 +178,28 @@ CREATE TABLE IF NOT EXISTS `tec_payments` (
   `reference` varchar(50) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `store_id` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
+  `store_id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_printers`
+-- Struktur dari tabel `tec_printers`
 --
 
-DROP TABLE IF EXISTS `tec_printers`;
-CREATE TABLE IF NOT EXISTS `tec_printers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_printers` (
+  `id` int(11) NOT NULL,
   `title` varchar(55) NOT NULL,
   `type` varchar(25) NOT NULL,
   `profile` varchar(25) NOT NULL,
   `char_per_line` tinyint(3) UNSIGNED DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL,
   `ip_address` varbinary(45) DEFAULT NULL,
-  `port` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `port` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tec_printers`
+-- Dumping data untuk tabel `tec_printers`
 --
 
 INSERT INTO `tec_printers` (`id`, `title`, `type`, `profile`, `char_per_line`, `path`, `ip_address`, `port`) VALUES
@@ -227,12 +208,11 @@ INSERT INTO `tec_printers` (`id`, `title`, `type`, `profile`, `char_per_line`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_products`
+-- Struktur dari tabel `tec_products`
 --
 
-DROP TABLE IF EXISTS `tec_products`;
-CREATE TABLE IF NOT EXISTS `tec_products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_products` (
+  `id` int(11) NOT NULL,
   `code` varchar(50) NOT NULL,
   `name` char(255) NOT NULL,
   `category_id` int(11) NOT NULL DEFAULT '1',
@@ -245,38 +225,31 @@ CREATE TABLE IF NOT EXISTS `tec_products` (
   `barcode_symbology` varchar(20) NOT NULL DEFAULT 'code39',
   `type` varchar(20) NOT NULL DEFAULT 'standard',
   `details` text,
-  `alert_quantity` decimal(10,4) DEFAULT '0.0000',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`)
+  `alert_quantity` decimal(10,4) DEFAULT '0.0000'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_product_store_qty`
+-- Struktur dari tabel `tec_product_store_qty`
 --
 
-DROP TABLE IF EXISTS `tec_product_store_qty`;
-CREATE TABLE IF NOT EXISTS `tec_product_store_qty` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_product_store_qty` (
+  `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `quantity` decimal(15,4) NOT NULL DEFAULT '0.0000',
-  `price` decimal(25,4) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`),
-  KEY `store_id` (`store_id`)
+  `price` decimal(25,4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_purchases`
+-- Struktur dari tabel `tec_purchases`
 --
 
-DROP TABLE IF EXISTS `tec_purchases`;
-CREATE TABLE IF NOT EXISTS `tec_purchases` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_purchases` (
+  `id` int(11) NOT NULL,
   `reference` varchar(55) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` varchar(1000) NOT NULL,
@@ -285,36 +258,32 @@ CREATE TABLE IF NOT EXISTS `tec_purchases` (
   `supplier_id` int(11) DEFAULT NULL,
   `received` tinyint(1) DEFAULT NULL,
   `created_by` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
+  `store_id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_purchase_items`
+-- Struktur dari tabel `tec_purchase_items`
 --
 
-DROP TABLE IF EXISTS `tec_purchase_items`;
-CREATE TABLE IF NOT EXISTS `tec_purchase_items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_purchase_items` (
+  `id` int(11) NOT NULL,
   `purchase_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` decimal(15,4) NOT NULL,
   `cost` decimal(25,4) NOT NULL,
-  `subtotal` decimal(25,4) NOT NULL,
-  PRIMARY KEY (`id`)
+  `subtotal` decimal(25,4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_registers`
+-- Struktur dari tabel `tec_registers`
 --
 
-DROP TABLE IF EXISTS `tec_registers`;
-CREATE TABLE IF NOT EXISTS `tec_registers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_registers` (
+  `id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` int(11) NOT NULL,
   `cash_in_hand` decimal(25,4) NOT NULL,
@@ -329,26 +298,17 @@ CREATE TABLE IF NOT EXISTS `tec_registers` (
   `closed_at` timestamp NULL DEFAULT NULL,
   `transfer_opened_bills` varchar(50) DEFAULT NULL,
   `closed_by` int(11) DEFAULT NULL,
-  `store_id` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tec_registers`
---
-
-INSERT INTO `tec_registers` (`id`, `date`, `user_id`, `cash_in_hand`, `status`, `total_cash`, `total_cheques`, `total_cc_slips`, `total_cash_submitted`, `total_cheques_submitted`, `total_cc_slips_submitted`, `note`, `closed_at`, `transfer_opened_bills`, `closed_by`, `store_id`) VALUES
-(1, '2019-03-19 18:19:22', 1, '200.0000', 'open', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+  `store_id` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_sales`
+-- Struktur dari tabel `tec_sales`
 --
 
-DROP TABLE IF EXISTS `tec_sales`;
-CREATE TABLE IF NOT EXISTS `tec_sales` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_sales` (
+  `id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `customer_id` int(11) NOT NULL,
   `customer_name` varchar(55) NOT NULL,
@@ -372,19 +332,17 @@ CREATE TABLE IF NOT EXISTS `tec_sales` (
   `status` varchar(20) DEFAULT NULL,
   `rounding` decimal(10,4) DEFAULT NULL,
   `store_id` int(11) NOT NULL DEFAULT '1',
-  `hold_ref` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `hold_ref` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_sale_items`
+-- Struktur dari tabel `tec_sale_items`
 --
 
-DROP TABLE IF EXISTS `tec_sale_items`;
-CREATE TABLE IF NOT EXISTS `tec_sale_items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_sale_items` (
+  `id` int(11) NOT NULL,
   `sale_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` decimal(15,4) NOT NULL,
@@ -399,43 +357,29 @@ CREATE TABLE IF NOT EXISTS `tec_sale_items` (
   `cost` decimal(25,4) DEFAULT '0.0000',
   `product_code` varchar(50) DEFAULT NULL,
   `product_name` varchar(50) DEFAULT NULL,
-  `comment` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `comment` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_sessions`
+-- Struktur dari tabel `tec_sessions`
 --
 
-DROP TABLE IF EXISTS `tec_sessions`;
-CREATE TABLE IF NOT EXISTS `tec_sessions` (
+CREATE TABLE `tec_sessions` (
   `id` varchar(40) NOT NULL,
   `ip_address` varchar(45) NOT NULL,
   `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `data` blob NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ci_sessions_timestamp` (`timestamp`)
+  `data` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tec_sessions`
---
-
-INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
-('6607561a161cb0632a5f8f93f7106910d2976864', '80.23.121.114', 1553014084, 0x5f5f63695f6c6173745f726567656e65726174657c693a313535333031333934383b6964656e746974797c733a31383a2261646d696e4074656364696172792e636f6d223b757365726e616d657c733a353a2261646d696e223b656d61696c7c733a31383a2261646d696e4074656364696172792e636f6d223b757365725f69647c733a313a2231223b66697273745f6e616d657c733a353a2241646d696e223b6c6173745f6e616d657c733a353a2241646d696e223b637265617465645f6f6e7c733a32343a22546875203235204a756e20323031352030353a353920414d223b6f6c645f6c6173745f6c6f67696e7c733a31303a2231343432323932373239223b6c6173745f69707c733a393a223132372e302e302e31223b6176617461727c4e3b67656e6465727c733a343a226d616c65223b67726f75705f69647c733a313a2231223b73746f72655f69647c4e3b6861735f73746f72655f69647c4e3b),
-('d68ca8s392bkdtl516c3dv64crg5l0m4', '::1', 1553019446, 0x5f5f63695f6c6173745f726567656e65726174657c693a313535333031393434363b),
-('v4r9g53e8ekebc2r5j1lqd03orbppqmb', '::1', 1553019562, 0x5f5f63695f6c6173745f726567656e65726174657c693a313535333031393434363b6964656e746974797c733a31383a2261646d696e4074656364696172792e636f6d223b757365726e616d657c733a353a2261646d696e223b656d61696c7c733a31383a2261646d696e4074656364696172792e636f6d223b757365725f69647c733a313a2231223b66697273745f6e616d657c733a353a2241646d696e223b6c6173745f6e616d657c733a353a2241646d696e223b637265617465645f6f6e7c733a32343a22546875203235204a756e20323031352030353a353920414d223b6f6c645f6c6173745f6c6f67696e7c733a31303a2231353533303134303632223b6c6173745f69707c733a31333a2238302e32332e3132312e313134223b6176617461727c4e3b67656e6465727c733a343a226d616c65223b67726f75705f69647c733a313a2231223b73746f72655f69647c693a313b6861735f73746f72655f69647c4e3b6d6573736167657c733a31343a2257656c636f6d6520746f20504f53223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226f6c64223b7d72656769737465725f69647c733a313a2231223b636173685f696e5f68616e647c733a383a223230302e30303030223b72656769737465725f6f70656e5f74696d657c733a31393a22323031392d30332d31392032303a31393a3232223b);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_settings`
+-- Struktur dari tabel `tec_settings`
 --
 
-DROP TABLE IF EXISTS `tec_settings`;
-CREATE TABLE IF NOT EXISTS `tec_settings` (
+CREATE TABLE `tec_settings` (
   `setting_id` int(1) NOT NULL,
   `logo` varchar(255) NOT NULL,
   `site_name` varchar(55) NOT NULL,
@@ -510,26 +454,24 @@ CREATE TABLE IF NOT EXISTS `tec_settings` (
   `auto_print` tinyint(1) DEFAULT '0',
   `local_printers` tinyint(1) DEFAULT NULL,
   `rtl` tinyint(1) DEFAULT NULL,
-  `print_img` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`setting_id`)
+  `print_img` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tec_settings`
+-- Dumping data untuk tabel `tec_settings`
 --
 
 INSERT INTO `tec_settings` (`setting_id`, `logo`, `site_name`, `tel`, `dateformat`, `timeformat`, `default_email`, `language`, `version`, `theme`, `timezone`, `protocol`, `smtp_host`, `smtp_user`, `smtp_pass`, `smtp_port`, `smtp_crypto`, `mmode`, `captcha`, `mailpath`, `currency_prefix`, `default_customer`, `default_tax_rate`, `rows_per_page`, `total_rows`, `header`, `footer`, `bsty`, `display_kb`, `default_category`, `default_discount`, `item_addition`, `barcode_symbology`, `pro_limit`, `decimals`, `thousands_sep`, `decimals_sep`, `focus_add_item`, `add_customer`, `toggle_category_slider`, `cancel_sale`, `suspend_sale`, `print_order`, `print_bill`, `finalize_sale`, `today_sale`, `open_hold_bills`, `close_register`, `java_applet`, `receipt_printer`, `pos_printers`, `cash_drawer_codes`, `char_per_line`, `rounding`, `pin_code`, `stripe`, `stripe_secret_key`, `stripe_publishable_key`, `purchase_code`, `envato_username`, `theme_style`, `after_sale_page`, `overselling`, `multi_store`, `qty_decimals`, `symbol`, `sac`, `display_symbol`, `remote_printing`, `printer`, `order_printers`, `auto_print`, `local_printers`, `rtl`, `print_img`) VALUES
-(1, 'logo1.png', 'SimplePOS', '0105292122', 'j M Y', 'h:i A', 'noreply@spos.tecdiary.my', 'indonesian', '4.0.28', 'default', 'Asia/Kuala_Lumpur', 'mail', 'pop.gmail.com', 'noreply@spos.tecdiary.my', '', '25', '', 0, 0, NULL, 'IDR', 3, '5%', 10, 30, '<h2><strong>Simple POS</strong></h2>\r\n       My Shop Lot, Shopping Mall,<br>\r\n                                                                                              Post Code, City<br>', 'Thank you for your business!\r\n<br>', 3, 0, 1, '0', 1, '', 10, 2, ',', '.', 'ALT+F1', 'ALT+F2', 'ALT+F10', 'ALT+F5', 'ALT+F6', 'ALT+F11', 'ALT+F12', 'ALT+F8', 'Ctrl+F1', 'Ctrl+F2', 'ALT+F7', 0, '', '', '', 42, 1, '2122', 1, '', '', '', '', 'green', NULL, 1, NULL, 2, NULL, 0, NULL, 1, 1, NULL, 0, NULL, NULL, NULL);
+(1, 'logo1.png', 'SimplePOS', '085280329998', 'j M Y', 'h:i A', 'noreply@spos.tecdiary.my', 'indonesian', '4.0.28', 'default', 'Asia/Kuala_Lumpur', 'mail', 'pop.gmail.com', 'noreply@spos.tecdiary.my', '', '25', '', 0, 0, NULL, 'IDR', 1, '0%', 10, 30, NULL, NULL, 3, 0, 1, '0', 1, NULL, 10, 2, ',', '.', 'ALT+F1', 'ALT+F2', 'ALT+F10', 'ALT+F5', 'ALT+F6', 'ALT+F11', 'ALT+F12', 'ALT+F8', 'Ctrl+F1', 'Ctrl+F2', 'ALT+F7', 0, '', '', '', 42, 1, '2122', 0, '', '', '', '', 'green', 0, 1, 0, 2, '', 0, 0, 1, 1, 'null', 0, 1, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_stores`
+-- Struktur dari tabel `tec_stores`
 --
 
-DROP TABLE IF EXISTS `tec_stores`;
-CREATE TABLE IF NOT EXISTS `tec_stores` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_stores` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `code` varchar(20) NOT NULL,
   `logo` varchar(40) DEFAULT NULL,
@@ -543,50 +485,46 @@ CREATE TABLE IF NOT EXISTS `tec_stores` (
   `country` varchar(25) DEFAULT NULL,
   `currency_code` varchar(3) DEFAULT NULL,
   `receipt_header` text,
-  `receipt_footer` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `receipt_footer` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tec_stores`
+-- Dumping data untuk tabel `tec_stores`
 --
 
 INSERT INTO `tec_stores` (`id`, `name`, `code`, `logo`, `email`, `phone`, `address1`, `address2`, `city`, `state`, `postal_code`, `country`, `currency_code`, `receipt_header`, `receipt_footer`) VALUES
-(1, 'SimplePOS', 'POS', 'logo.png', 'store@tecdiary.com', '012345678', 'Address Line 1', '', 'Petaling Jaya', 'Selangor', '46000', 'Malaysia', 'MYR', NULL, NULL);
+(1, 'Maju Jaya', 'POS', 'logo.png', 'store@tecdiary.com', '085280329998', 'Toko Bangunan', '', 'Sampang', 'Indonesia', '69263', 'Sampang', 'MYR', '', 'Terima Kasih');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_suppliers`
+-- Struktur dari tabel `tec_suppliers`
 --
 
-DROP TABLE IF EXISTS `tec_suppliers`;
-CREATE TABLE IF NOT EXISTS `tec_suppliers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_suppliers` (
+  `id` int(11) NOT NULL,
   `name` varchar(55) NOT NULL,
   `cf1` varchar(255) NOT NULL,
   `cf2` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tec_suppliers`
+-- Dumping data untuk tabel `tec_suppliers`
 --
 
 INSERT INTO `tec_suppliers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES
-(1, 'Test Supplier', '1', '2', '0123456789', 'supplier@tecdairy.com');
+(1, 'Test Supplier', '1', '2', '0123456789', 'supplier@supplier.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_suspended_items`
+-- Struktur dari tabel `tec_suspended_items`
 --
 
-DROP TABLE IF EXISTS `tec_suspended_items`;
-CREATE TABLE IF NOT EXISTS `tec_suspended_items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_suspended_items` (
+  `id` int(11) NOT NULL,
   `suspend_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` decimal(15,4) NOT NULL,
@@ -600,19 +538,17 @@ CREATE TABLE IF NOT EXISTS `tec_suspended_items` (
   `real_unit_price` decimal(25,4) DEFAULT NULL,
   `product_code` varchar(50) DEFAULT NULL,
   `product_name` varchar(50) DEFAULT NULL,
-  `comment` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `comment` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_suspended_sales`
+-- Struktur dari tabel `tec_suspended_sales`
 --
 
-DROP TABLE IF EXISTS `tec_suspended_sales`;
-CREATE TABLE IF NOT EXISTS `tec_suspended_sales` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_suspended_sales` (
+  `id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `customer_id` int(11) NOT NULL,
   `customer_name` varchar(55) NOT NULL,
@@ -634,19 +570,17 @@ CREATE TABLE IF NOT EXISTS `tec_suspended_sales` (
   `updated_at` datetime DEFAULT NULL,
   `note` varchar(1000) DEFAULT NULL,
   `hold_ref` varchar(255) DEFAULT NULL,
-  `store_id` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
+  `store_id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_users`
+-- Struktur dari tabel `tec_users`
 --
 
-DROP TABLE IF EXISTS `tec_users`;
-CREATE TABLE IF NOT EXISTS `tec_users` (
-  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_users` (
+  `id` int(11) UNSIGNED NOT NULL,
   `last_ip_address` varbinary(45) DEFAULT NULL,
   `ip_address` varbinary(45) DEFAULT NULL,
   `username` varchar(100) NOT NULL,
@@ -667,42 +601,321 @@ CREATE TABLE IF NOT EXISTS `tec_users` (
   `avatar` varchar(55) DEFAULT NULL,
   `gender` varchar(20) DEFAULT NULL,
   `group_id` int(11) UNSIGNED NOT NULL DEFAULT '2',
-  `store_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `group_id` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `store_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tec_users`
+-- Dumping data untuk tabel `tec_users`
 --
 
 INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES
-(1, 0x3a3a31, 0x3132372e302e302e31, 'admin', 'fe941d48eb1fbce34b4588ae500861570fb0e398', NULL, 'admin@tecdiary.com', NULL, NULL, NULL, 'b2d2c8fd5d9a5f19901279ac74cec92dc15ac970', 1435204774, 1553019446, 1, 'Admin', 'Admin', 'Tecdiary', '012345678', NULL, 'male', 1, NULL);
+(2, 0x3a3a31, 0x3a3a31, 'kasir 1', 'b8132f8f82727b40aea8f9f918e5abe5fcc954ac', NULL, 'pegawai@pegawai.com', NULL, NULL, NULL, '4a502fca770d93d04bc1c1b39004a69fd8f806bb', 1581479879, 1581606500, 1, 'Kasir', '1', NULL, '085280329998', NULL, 'male', 2, 1),
+(3, 0x3a3a31, 0x3a3a31, 'administrator', 'c6cad1dc5f85aa23ece19c6d9c45f5e57d031c58', NULL, 'admin@admin.com', NULL, NULL, NULL, '9acdd83882311d367c9a161795a15bbf92a13445', 1581593972, 1581606517, 1, 'Administrator', '1', NULL, '085280329998', NULL, 'male', 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tec_user_logins`
+-- Struktur dari tabel `tec_user_logins`
 --
 
-DROP TABLE IF EXISTS `tec_user_logins`;
-CREATE TABLE IF NOT EXISTS `tec_user_logins` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tec_user_logins` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `company_id` int(11) DEFAULT NULL,
   `ip_address` varbinary(16) NOT NULL,
   `login` varchar(100) NOT NULL,
-  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tec_user_logins`
+-- Indexes for dumped tables
 --
 
-INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES
-(1, 1, NULL, 0x38302e32332e3132312e313134, 'admin@tecdiary.com', '2019-03-19 16:47:42'),
-(2, 1, NULL, 0x3a3a31, 'admin@tecdiary.com', '2019-03-19 18:17:26');
+--
+-- Indeks untuk tabel `tec_categories`
+--
+ALTER TABLE `tec_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_combo_items`
+--
+ALTER TABLE `tec_combo_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_customers`
+--
+ALTER TABLE `tec_customers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_expenses`
+--
+ALTER TABLE `tec_expenses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_gift_cards`
+--
+ALTER TABLE `tec_gift_cards`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `card_no` (`card_no`);
+
+--
+-- Indeks untuk tabel `tec_groups`
+--
+ALTER TABLE `tec_groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_login_attempts`
+--
+ALTER TABLE `tec_login_attempts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_payments`
+--
+ALTER TABLE `tec_payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_printers`
+--
+ALTER TABLE `tec_printers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_products`
+--
+ALTER TABLE `tec_products`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
+
+--
+-- Indeks untuk tabel `tec_product_store_qty`
+--
+ALTER TABLE `tec_product_store_qty`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `store_id` (`store_id`);
+
+--
+-- Indeks untuk tabel `tec_purchases`
+--
+ALTER TABLE `tec_purchases`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_purchase_items`
+--
+ALTER TABLE `tec_purchase_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_registers`
+--
+ALTER TABLE `tec_registers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_sales`
+--
+ALTER TABLE `tec_sales`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_sale_items`
+--
+ALTER TABLE `tec_sale_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_sessions`
+--
+ALTER TABLE `tec_sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
+
+--
+-- Indeks untuk tabel `tec_settings`
+--
+ALTER TABLE `tec_settings`
+  ADD PRIMARY KEY (`setting_id`);
+
+--
+-- Indeks untuk tabel `tec_stores`
+--
+ALTER TABLE `tec_stores`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_suppliers`
+--
+ALTER TABLE `tec_suppliers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_suspended_items`
+--
+ALTER TABLE `tec_suspended_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_suspended_sales`
+--
+ALTER TABLE `tec_suspended_sales`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tec_users`
+--
+ALTER TABLE `tec_users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `group_id` (`group_id`);
+
+--
+-- Indeks untuk tabel `tec_user_logins`
+--
+ALTER TABLE `tec_user_logins`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_categories`
+--
+ALTER TABLE `tec_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_combo_items`
+--
+ALTER TABLE `tec_combo_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_customers`
+--
+ALTER TABLE `tec_customers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_expenses`
+--
+ALTER TABLE `tec_expenses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_gift_cards`
+--
+ALTER TABLE `tec_gift_cards`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_groups`
+--
+ALTER TABLE `tec_groups`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_login_attempts`
+--
+ALTER TABLE `tec_login_attempts`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_payments`
+--
+ALTER TABLE `tec_payments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_printers`
+--
+ALTER TABLE `tec_printers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_products`
+--
+ALTER TABLE `tec_products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_product_store_qty`
+--
+ALTER TABLE `tec_product_store_qty`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_purchases`
+--
+ALTER TABLE `tec_purchases`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_purchase_items`
+--
+ALTER TABLE `tec_purchase_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_registers`
+--
+ALTER TABLE `tec_registers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_sales`
+--
+ALTER TABLE `tec_sales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_sale_items`
+--
+ALTER TABLE `tec_sale_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_stores`
+--
+ALTER TABLE `tec_stores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_suppliers`
+--
+ALTER TABLE `tec_suppliers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_suspended_items`
+--
+ALTER TABLE `tec_suspended_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_suspended_sales`
+--
+ALTER TABLE `tec_suspended_sales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_users`
+--
+ALTER TABLE `tec_users`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `tec_user_logins`
+--
+ALTER TABLE `tec_user_logins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
