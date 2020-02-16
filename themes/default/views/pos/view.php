@@ -75,7 +75,7 @@ if ($modal) {
                                     }
                                     ?>
                                 </div>
-                                <p>
+                                <p style="padding-left: 2mm;">
                                     <?= lang("date").': '.$this->tec->hrld($inv->date); ?> <br>
 <!--                                     <?= lang('sale_no_ref').': '.$inv->id; ?><br>
                                     <?= lang("customer").': '. $inv->customer_name; ?> <br> -->
@@ -85,10 +85,10 @@ if ($modal) {
                                 <table class="table table-striped table-condensed" style="font-size: 11px; table-layout:fixed; word-wrap: break-word;">
                                     <thead>
                                         <tr>
-                                            <th class="text-center" style="width: 33%; border-bottom: 2px solid #ddd;"><?=lang('description');?></th>
-                                            <th class="text-center" style="width: 15%; border-bottom: 2px solid #ddd;"><?=lang('quantity');?></th>
-                                            <th class="text-center" style="width: 26%; border-bottom: 2px solid #ddd;"><?=lang('price');?></th>
-                                            <th class="text-center" style="width: 26%; border-bottom: 2px solid #ddd;"><?=lang('subtotal');?></th>
+                                            <th class="text-center" style="width: 27%; border-bottom: 2px solid #ddd;"><?=lang('description');?></th>
+                                            <th class="text-center" style="width: 23%; border-bottom: 2px solid #ddd;"><?=lang('quantity');?></th>
+                                            <th class="text-center" style="width: 25%; border-bottom: 2px solid #ddd;"><?=lang('price');?></th>
+                                            <th class="text-center" style="width: 25%; border-bottom: 2px solid #ddd;"><?=lang('subtotal');?></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -151,7 +151,7 @@ if ($modal) {
                                 </table>
                                 <?php
                                 if ($payments) {
-                                    echo '<table class="table table-striped table-condensed" style="margin-top:10px;"><tbody>';
+                                    echo '<table class="table table-striped table-condensed" style="font-size: 11px; margin-top:10px;"><tbody>';
                                     foreach ($payments as $payment) {
                                         echo '<tr>';
                                         if ($payment->paid_by == 'cash' && $payment->pos_paid) {
@@ -159,13 +159,13 @@ if ($modal) {
                                             // echo '<td class="text-right">' . lang("amount") . ' :</td><td>' . $this->tec->formatMoney($payment->pos_paid == 0 ? $payment->amount : $payment->pos_paid) . '</td>';
                                             // echo '<td class="text-right">' . lang("change") . ' :</td><td>' . ($payment->pos_balance > 0 ? $this->tec->formatMoney($payment->pos_balance) : 0) . '</td>';
                                             echo '<tr>';
-                                            echo '<td colspan="2">' . lang("paid_by") . ' :</td><td colspan="2" class="text-right">' . lang($payment->paid_by) . '</td>';
+                                            echo '<td colspan="2" class="text-right" style="width: 50%;">' . lang("paid_by") . '</td><td colspan="2" class="text-right">' . lang($payment->paid_by) . '</td>';
                                             echo '</tr>';
                                             echo '<tr>';
-                                            echo '<td colspan="2">' . lang("amount") . ' :</td><td colspan="2" class="text-right">' . $this->tec->formatMoney($payment->pos_paid == 0 ? $payment->amount : $payment->pos_paid) . '</td>';
+                                            echo '<td colspan="2" class="text-right">' . lang("amount") . '</td><td colspan="2" class="text-right">' . $this->tec->formatMoney($payment->pos_paid == 0 ? $payment->amount : $payment->pos_paid) . '</td>';
                                             echo '</tr>';
                                             echo '<tr>';
-                                            echo '<td colspan="2">' . lang("change") . ' :</td><td colspan="2" class="text-right">' . ($payment->pos_balance > 0 ? $this->tec->formatMoney($payment->pos_balance) : 0) . '</td>';
+                                            echo '<td colspan="2" class="text-right">' . lang("change") . '</td><td colspan="2" class="text-right">' . ($payment->pos_balance > 0 ? $this->tec->formatMoney($payment->pos_balance) : 0) . '</td>';
                                             echo '</tr>';
                                         }
                                         if (($payment->paid_by == 'CC' || $payment->paid_by == 'ppp' || $payment->paid_by == 'stripe') && $payment->cc_no) {
