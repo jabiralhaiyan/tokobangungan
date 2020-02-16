@@ -13,12 +13,14 @@
 			<div class="row">
 				<div class="col-md-12">
 					<p class="no-print"><?= lang('label_print_tip'); ?></p>
+					<center>
 					<div class="barcode">
 
 						<?=$html?>
 						<div class="no-print text-center"><?= $links ? $links : ''; ?></div>
 
 					</div>
+					</center>
 				</div>
 			</div>
 		</div>
