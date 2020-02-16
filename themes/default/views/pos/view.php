@@ -148,15 +148,24 @@ if ($modal) {
                                         <?php } ?>
                                     </tfoot>
                                 </table>
-<!--                                 <?php
+                                <?php
                                 if ($payments) {
                                     echo '<table class="table table-striped table-condensed" style="margin-top:10px;"><tbody>';
                                     foreach ($payments as $payment) {
                                         echo '<tr>';
                                         if ($payment->paid_by == 'cash' && $payment->pos_paid) {
-                                            echo '<td class="text-right">' . lang("paid_by") . ' :</td><td>' . lang($payment->paid_by) . '</td>';
-                                            echo '<td class="text-right">' . lang("amount") . ' :</td><td>' . $this->tec->formatMoney($payment->pos_paid == 0 ? $payment->amount : $payment->pos_paid) . '</td>';
-                                            echo '<td class="text-right">' . lang("change") . ' :</td><td>' . ($payment->pos_balance > 0 ? $this->tec->formatMoney($payment->pos_balance) : 0) . '</td>';
+                                            // echo '<td class="text-right">' . lang("paid_by") . ' :</td><td>' . lang($payment->paid_by) . '</td>';
+                                            // echo '<td class="text-right">' . lang("amount") . ' :</td><td>' . $this->tec->formatMoney($payment->pos_paid == 0 ? $payment->amount : $payment->pos_paid) . '</td>';
+                                            // echo '<td class="text-right">' . lang("change") . ' :</td><td>' . ($payment->pos_balance > 0 ? $this->tec->formatMoney($payment->pos_balance) : 0) . '</td>';
+                                            echo '<tr>';
+                                            echo '<td colspan="2">' . lang("paid_by") . ' :</td><td colspan="2" class="text-right">' . lang($payment->paid_by) . '</td>';
+                                            echo '</tr>';
+                                            echo '<tr>';
+                                            echo '<td colspan="2">' . lang("amount") . ' :</td><td colspan="2" class="text-right">' . $this->tec->formatMoney($payment->pos_paid == 0 ? $payment->amount : $payment->pos_paid) . '</td>';
+                                            echo '</tr>';
+                                            echo '<tr>';
+                                            echo '<td colspan="2">' . lang("change") . ' :</td><td colspan="2" class="text-right">' . ($payment->pos_balance > 0 ? $this->tec->formatMoney($payment->pos_balance) : 0) . '</td>';
+                                            echo '</tr>';
                                         }
                                         if (($payment->paid_by == 'CC' || $payment->paid_by == 'ppp' || $payment->paid_by == 'stripe') && $payment->cc_no) {
                                             echo '<td class="text-right">' . lang("paid_by") . ' :</td><td>' . lang($payment->paid_by) . '</td>';
@@ -185,7 +194,7 @@ if ($modal) {
                                     echo '</tbody></table>';
                                 }
 
-                                ?> -->
+                                ?>
 
                                 <?= $inv->note ? '<p style="margin-top:10px; text-align: center;">' . $this->tec->decode_html($inv->note) . '</p>' : ''; ?>
                                 <?php if (!empty($store->receipt_footer)) { ?>
