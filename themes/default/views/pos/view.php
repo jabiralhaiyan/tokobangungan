@@ -50,7 +50,8 @@ if ($modal) {
                 }
                 ?>
                 <div id="wrapper">
-                    <div id="receiptData" style="width: auto; max-width: 580px; min-width: 250px; margin: 0 auto;">
+                    <!-- <div id="receiptData" style="width: auto; max-width: 580px; min-width: 250px; margin: 0 auto;"> -->
+                    <div id="receiptData" style="width: auto; max-width: 58mm; min-width: 28mm; margin: 0 auto;">
                         <div class="no-print">
                             <?php if ($message) { ?>
                             <div class="alert alert-success">
@@ -81,12 +82,12 @@ if ($modal) {
                                     <?= lang("sales_person").': '. $created_by->first_name." ".$created_by->last_name; ?> <br>
                                 </p>
                                 <div style="clear:both;"></div>
-                                <table class="table table-striped table-condensed">
+                                <table class="table table-striped table-condensed" style="font-size: 11px; table-layout:fixed; word-wrap: break-word;">
                                     <thead>
                                         <tr>
-                                            <th class="text-center" style="width: 50%; border-bottom: 2px solid #ddd;"><?=lang('description');?></th>
-                                            <th class="text-center" style="width: 12%; border-bottom: 2px solid #ddd;"><?=lang('quantity');?></th>
-                                            <th class="text-center" style="width: 24%; border-bottom: 2px solid #ddd;"><?=lang('price');?></th>
+                                            <th class="text-center" style="width: 33%; border-bottom: 2px solid #ddd;"><?=lang('description');?></th>
+                                            <th class="text-center" style="width: 15%; border-bottom: 2px solid #ddd;"><?=lang('quantity');?></th>
+                                            <th class="text-center" style="width: 26%; border-bottom: 2px solid #ddd;"><?=lang('price');?></th>
                                             <th class="text-center" style="width: 26%; border-bottom: 2px solid #ddd;"><?=lang('subtotal');?></th>
                                         </tr>
                                     </thead>
