@@ -24,7 +24,7 @@ if ($modal) {
                     <style type="text/css" media="all">
                         body { color: #000; }
                         /*#wrapper { max-width: 520px; margin: 0 auto; padding-top: 20px; }*/
-                        #wrapper { max-width: 58mm; margin: 0 auto; padding-top: 20px; }
+                        #wrapper { max-width: 56mm; margin: 0 auto; padding-top: 20px; }
                         .btn { margin-bottom: 5px; }
                         .table { border-radius: 3px; }
                         .table th { background: #f5f5f5; }
@@ -34,7 +34,7 @@ if ($modal) {
                         @media print {
                             .no-print { display: none; }
                             /*#wrapper { max-width: 480px; width: 100%; min-width: 250px; margin: 0 auto; }*/
-                            #wrapper { max-width: 58mm; width: 100%; min-width: 28mm; margin: 0 auto; }
+                            #wrapper { max-width: 56mm; width: 100%; min-width: 28mm; margin: 0 auto; padding-left: 2mm;}
                         }
                         <?php if($Settings->rtl) { ?>
                             .text-right { text-align: left; }
@@ -51,7 +51,7 @@ if ($modal) {
                 ?>
                 <div id="wrapper">
                     <!-- <div id="receiptData" style="width: auto; max-width: 580px; min-width: 250px; margin: 0 auto;"> -->
-                    <div id="receiptData" style="width: auto; max-width: 58mm; min-width: 28mm; margin: 0 auto;">
+                    <div id="receiptData" style="width: auto; max-width: 56mm; min-width: 28mm; margin: 0 auto;">
                         <div class="no-print">
                             <?php if ($message) { ?>
                             <div class="alert alert-success">
